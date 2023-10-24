@@ -21,4 +21,9 @@ public static class CacheHelpers
     {
         return "types";
     }
+
+    public static string GenerateCatalogItemCacheKey(int itemId)
+    {
+        return $"item-{itemId}";
+    }
 }

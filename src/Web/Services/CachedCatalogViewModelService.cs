@@ -39,6 +39,17 @@ public class CachedCatalogViewModelService : ICatalogViewModelService
         })) ?? new CatalogIndexViewModel();
     }
 
+    public async Task<CatalogItemViewModel> GetCatalogItem(int id)
+    {
+        var cacheKey = CacheHelpers.GenerateCatalogItemCacheKey(id);
+
+        return (await _cache.GetOrCreateAsync(cacheKey, async entry =>
+        {
+            entry.SlidingExpiration = CacheHelpers.DefaultCacheDuration;
+            return await _catalogViewModelService.GetCatalogItem(id);
+        })) ?? new CatalogItemViewModel();
+    }
+
     public async Task<IEnumerable<SelectListItem>> GetTypes()
     {
         return (await _cache.GetOrCreateAsync(CacheHelpers.GenerateTypesCacheKey(), async entry =>
