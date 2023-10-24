@@ -25,6 +25,12 @@ public class CatalogItemConfiguration : IEntityTypeConfiguration<CatalogItem>
         builder.Property(ci => ci.PictureUri)
             .IsRequired(false);
 
+        builder.Property(ci => ci.CurrentStock)
+            .IsRequired(true);
+
+        builder.Property(ci => ci.OnOrder)
+            .IsRequired(true);
+            
         builder.HasOne(ci => ci.CatalogBrand)
             .WithMany()
             .HasForeignKey(ci => ci.CatalogBrandId);
@@ -32,5 +38,6 @@ public class CatalogItemConfiguration : IEntityTypeConfiguration<CatalogItem>
         builder.HasOne(ci => ci.CatalogType)
             .WithMany()
             .HasForeignKey(ci => ci.CatalogTypeId);
+
     }
 }

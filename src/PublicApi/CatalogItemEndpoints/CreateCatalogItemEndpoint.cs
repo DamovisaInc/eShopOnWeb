@@ -67,6 +67,8 @@ public class CreateCatalogItemEndpoint : IEndpoint<IResult, CreateCatalogItemReq
             CatalogTypeId = newItem.CatalogTypeId,
             Description = newItem.Description,
             Name = newItem.Name,
+            CurrentStock = newItem.CurrentStock,
+            OnOrder = newItem.OnOrder,
             PictureUri = _uriComposer.ComposePicUri(newItem.PictureUri),
             Price = newItem.Price
         };

@@ -44,7 +44,7 @@ public class UpdateCatalogItemEndpoint : IEndpoint<IResult, UpdateCatalogItemReq
             return Results.NotFound();
         }
 
-        CatalogItem.CatalogItemDetails details = new(request.Name, request.Description, request.Price);
+        CatalogItem.CatalogItemDetails details = new(request.Name, request.Description, request.Price, request.CurrentStock, request.OnOrder);
         existingItem.UpdateDetails(details);
         existingItem.UpdateBrand(request.CatalogBrandId);
         existingItem.UpdateType(request.CatalogTypeId);
@@ -59,7 +59,9 @@ public class UpdateCatalogItemEndpoint : IEndpoint<IResult, UpdateCatalogItemReq
             Description = existingItem.Description,
             Name = existingItem.Name,
             PictureUri = _uriComposer.ComposePicUri(existingItem.PictureUri),
-            Price = existingItem.Price
+            Price = existingItem.Price,
+            CurrentStock = existingItem.CurrentStock,
+            OnOrder = existingItem.OnOrder
         };
         response.CatalogItem = dto;
         return Results.Ok(response);

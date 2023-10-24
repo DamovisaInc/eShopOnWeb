@@ -56,7 +56,9 @@ public class CatalogViewModelService : ICatalogViewModelService
                 Id = i.Id,
                 Name = i.Name,
                 PictureUri = _uriComposer.ComposePicUri(i.PictureUri),
-                Price = i.Price
+                Price = i.Price,
+                CurrentStock = i.CurrentStock,
+                OnOrder = i.OnOrder,
             }).ToList(),
             Brands = (await GetBrands()).ToList(),
             Types = (await GetTypes()).ToList(),
@@ -73,6 +75,29 @@ public class CatalogViewModelService : ICatalogViewModelService
 
         vm.PaginationInfo.Next = (vm.PaginationInfo.ActualPage == vm.PaginationInfo.TotalPages - 1) ? "is-disabled" : "";
         vm.PaginationInfo.Previous = (vm.PaginationInfo.ActualPage == 0) ? "is-disabled" : "";
+
+        return vm;
+    }
+
+    public async Task<CatalogItemViewModel> GetCatalogItem(int id) 
+    {
+        _logger.LogInformation("GetCatalogItem called.");
+
+        var item = await _itemRepository.GetByIdAsync(id);
+        if (item == null)
+        {
+            return new CatalogItemViewModel();
+        }
+
+        var vm = new CatalogItemViewModel()
+        {
+            Id = item.Id,
+            Name = item.Name,
+            PictureUri = _uriComposer.ComposePicUri(item.PictureUri),
+            Price = item.Price,
+            CurrentStock = item.CurrentStock,
+            OnOrder = item.OnOrder
+        };
 
         return vm;
     }
