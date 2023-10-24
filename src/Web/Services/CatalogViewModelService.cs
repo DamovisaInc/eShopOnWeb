@@ -55,6 +55,7 @@ public class CatalogViewModelService : ICatalogViewModelService
             {
                 Id = i.Id,
                 Name = i.Name,
+                Description = i.Description,
                 PictureUri = _uriComposer.ComposePicUri(i.PictureUri),
                 Price = i.Price,
                 CurrentStock = i.CurrentStock,
@@ -93,6 +94,7 @@ public class CatalogViewModelService : ICatalogViewModelService
         {
             Id = item.Id,
             Name = item.Name,
+            Description = item.Description,
             PictureUri = _uriComposer.ComposePicUri(item.PictureUri),
             Price = item.Price,
             CurrentStock = item.CurrentStock,

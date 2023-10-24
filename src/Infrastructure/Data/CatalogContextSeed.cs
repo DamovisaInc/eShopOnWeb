@@ -97,7 +97,7 @@ public class CatalogContextSeed
                 new(3,2, ".NET Foundation Sheet", ".NET Foundation Sheet", 12, "http://catalogbaseurltobereplaced/images/products/10.png", 20, 0),
                 new(3,2, "Cup<T> Sheet", "Cup<T> Sheet", 8.5M, "http://catalogbaseurltobereplaced/images/products/11.png", 20, 0),
                 new(2,5, "Prism White TShirt", "Prism White TShirt", 12, "http://catalogbaseurltobereplaced/images/products/12.png", 0, 0),
-                new(4,5, "SummitClimber Backpack", "SummitClimber Backpack", 240M, "http://catalogbaseurltobereplaced/images/products/13.png", 0, 50)
+                new(4,5, "The SummitClimber Backpack is perfect for carrying all your gear for long hikes. With a 70L capacity and serious back support, it's the backpack you'll turn to when you're serious about your hiking.", "SummitClimber Backpack", 240M, "http://catalogbaseurltobereplaced/images/products/13.png", 0, 50)
             };
     }
 }
