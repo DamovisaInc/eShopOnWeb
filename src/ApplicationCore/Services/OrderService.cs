@@ -47,14 +47,9 @@ public class OrderService : IOrderService
             return orderItem;
         }).ToList();
 
-        // check each item has enough stock and remove items from stock
         foreach (var item in items)
         {
             var catalogItem = catalogItems.First(c => c.Id == item.ItemOrdered.CatalogItemId);
-            if (catalogItem.CurrentStock < item.Units)
-            {
-                throw new ApplicationException($"Available stock for item {catalogItem.Name} is {catalogItem.CurrentStock}.");
-            }
             catalogItem.RemoveStock(item.Units);
         }
 

@@ -6,17 +6,24 @@ namespace Microsoft.eShopWeb.ApplicationCore.Entities;
 
 public class CatalogItem : BaseEntity, IAggregateRoot
 {
-    public string Name { get; private set; }
-    public string Description { get; private set; }
-    public decimal Price { get; private set; }
-    public string PictureUri { get; private set; }
-    public int CurrentStock { get; private set; }
-    public int PendingRestock { get; private set; }
-    public int CatalogTypeId { get; private set; }
-    public CatalogType? CatalogType { get; private set; }
-    public int CatalogBrandId { get; private set; }
-    public CatalogBrand? CatalogBrand { get; private set; }
+    public string Name { get; set; }
+    public string Description { get; set; }
+    public decimal Price { get; set; }
+    public string PictureUri { get; set; }
+    public int CurrentStock { get; set; }
+    public int PendingRestock { get; set; }
+    public int CatalogTypeId { get; set; }
+    public CatalogType? CatalogType { get; set; }
+    public int CatalogBrandId { get; set; }
+    public CatalogBrand? CatalogBrand { get; set; }
 
+    public CatalogItem()
+    {
+        Name = "";
+        Description = "";
+
+        PictureUri = "";
+    }
     public CatalogItem(int catalogTypeId,
         int catalogBrandId,
         string description,
@@ -73,8 +80,13 @@ public class CatalogItem : BaseEntity, IAggregateRoot
         PictureUri = $"images\\products\\{pictureName}?{new DateTime().Ticks}";
     }
 
-    public void RemoveStock(int units) {
+    public void RemoveStock(int units)
+    {
         Guard.Against.NegativeOrZero(units, nameof(units));
+        if (CurrentStock < units)
+        {
+            throw new ApplicationException($"Not enough stock. Current stock: {CurrentStock}.");
+        }
         CurrentStock -= units;
     }
 
