@@ -107,7 +107,7 @@ public partial class InitialModel : Migration
                 Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                 PictureUri = table.Column<string>(type: "nvarchar(max)", nullable: true),
                 InStock = table.Column<int>(type: "int", nullable: false),
-                OnOrder = table.Column<int>(type: "int", nullable: false),
+                PendingRestock = table.Column<int>(type: "int", nullable: false),
                 CatalogTypeId = table.Column<int>(type: "int", nullable: false),
                 CatalogBrandId = table.Column<int>(type: "int", nullable: false)
             },

@@ -22,5 +22,5 @@ public class UpdateCatalogItemRequest : BaseRequest
     [Range(-10000, 10000)]
     public int CurrentStock { get; set; }
     [Range(0, 10000)]
-    public int OnOrder { get; set; }
+    public int PendingRestock { get; set; }
 }

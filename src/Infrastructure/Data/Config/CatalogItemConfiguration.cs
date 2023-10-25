@@ -28,7 +28,7 @@ public class CatalogItemConfiguration : IEntityTypeConfiguration<CatalogItem>
         builder.Property(ci => ci.CurrentStock)
             .IsRequired(true);
 
-        builder.Property(ci => ci.OnOrder)
+        builder.Property(ci => ci.PendingRestock)
             .IsRequired(true);
             
         builder.HasOne(ci => ci.CatalogBrand)

@@ -72,7 +72,7 @@ namespace Microsoft.eShopWeb.Infrastructure.Data.Migrations
                 defaultValue: 0);
 
             migrationBuilder.AddColumn<int>(
-                name: "OnOrder",
+                name: "PendingRestock",
                 table: "Catalog",
                 type: "int",
                 nullable: false,
@@ -87,7 +87,7 @@ namespace Microsoft.eShopWeb.Infrastructure.Data.Migrations
                 table: "Catalog");
 
             migrationBuilder.DropColumn(
-                name: "OnOrder",
+                name: "PendingRestock",
                 table: "Catalog");
 
             migrationBuilder.AlterColumn<string>(

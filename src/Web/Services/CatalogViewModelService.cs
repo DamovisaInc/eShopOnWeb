@@ -59,7 +59,7 @@ public class CatalogViewModelService : ICatalogViewModelService
                 PictureUri = _uriComposer.ComposePicUri(i.PictureUri),
                 Price = i.Price,
                 CurrentStock = i.CurrentStock,
-                OnOrder = i.OnOrder,
+                PendingRestock = i.PendingRestock,
             }).ToList(),
             Brands = (await GetBrands()).ToList(),
             Types = (await GetTypes()).ToList(),
@@ -98,7 +98,7 @@ public class CatalogViewModelService : ICatalogViewModelService
             PictureUri = _uriComposer.ComposePicUri(item.PictureUri),
             Price = item.Price,
             CurrentStock = item.CurrentStock,
-            OnOrder = item.OnOrder
+            PendingRestock = item.PendingRestock
         };
 
         return vm;

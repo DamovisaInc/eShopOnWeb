@@ -11,7 +11,7 @@ public class CatalogItem : BaseEntity, IAggregateRoot
     public decimal Price { get; private set; }
     public string PictureUri { get; private set; }
     public int CurrentStock { get; private set; }
-    public int OnOrder { get; private set; }
+    public int PendingRestock { get; private set; }
     public int CatalogTypeId { get; private set; }
     public CatalogType? CatalogType { get; private set; }
     public int CatalogBrandId { get; private set; }
@@ -24,7 +24,7 @@ public class CatalogItem : BaseEntity, IAggregateRoot
         decimal price,
         string pictureUri,
         int currentStock = 0,
-        int onOrder = 0)
+        int pendingRestock = 0)
     {
         CatalogTypeId = catalogTypeId;
         CatalogBrandId = catalogBrandId;
@@ -33,7 +33,7 @@ public class CatalogItem : BaseEntity, IAggregateRoot
         Price = price;
         PictureUri = pictureUri;
         CurrentStock = currentStock;
-        OnOrder = onOrder;
+        PendingRestock = pendingRestock;
     }
 
     public void UpdateDetails(CatalogItemDetails details)
@@ -41,13 +41,13 @@ public class CatalogItem : BaseEntity, IAggregateRoot
         Guard.Against.NullOrEmpty(details.Name, nameof(details.Name));
         Guard.Against.NullOrEmpty(details.Description, nameof(details.Description));
         Guard.Against.NegativeOrZero(details.Price, nameof(details.Price));
-        Guard.Against.Negative(details.OnOrder, nameof(details.OnOrder));
+        Guard.Against.Negative(details.PendingRestock, nameof(details.PendingRestock));
 
         Name = details.Name;
         Description = details.Description;
         Price = details.Price;
         CurrentStock = details.CurrentStock;
-        OnOrder = details.OnOrder;
+        PendingRestock = details.PendingRestock;
 
     }
 
@@ -73,21 +73,26 @@ public class CatalogItem : BaseEntity, IAggregateRoot
         PictureUri = $"images\\products\\{pictureName}?{new DateTime().Ticks}";
     }
 
+    public void RemoveStock(int units) {
+        Guard.Against.NegativeOrZero(units, nameof(units));
+        CurrentStock -= units;
+    }
+
     public readonly record struct CatalogItemDetails
     {
         public string? Name { get; }
         public string? Description { get; }
         public decimal Price { get; }
         public int CurrentStock { get; }
-        public int OnOrder { get; }
+        public int PendingRestock { get; }
 
-        public CatalogItemDetails(string? name, string? description, decimal price, int currentStock, int onOrder)
+        public CatalogItemDetails(string? name, string? description, decimal price, int currentStock, int pendingRestock)
         {
             Name = name;
             Description = description;
             Price = price;
             CurrentStock = currentStock;
-            OnOrder = onOrder;
+            PendingRestock = pendingRestock;
         }
     }
 }

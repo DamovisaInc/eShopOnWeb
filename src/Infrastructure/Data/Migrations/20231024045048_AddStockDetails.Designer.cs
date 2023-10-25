@@ -123,7 +123,7 @@ namespace Microsoft.eShopWeb.Infrastructure.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("OnOrder")
+                    b.Property<int>("PendingRestock")
                         .HasColumnType("int");
 
                     b.Property<string>("PictureUri")
