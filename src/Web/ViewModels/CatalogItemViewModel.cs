@@ -9,7 +9,5 @@ public class CatalogItemViewModel
     public decimal Price { get; set; }
     public int CurrentStock { get; set; }
     public int PendingRestock { get; set; }
-    public string? InStockText { get { return CurrentStock > 0 ? CurrentStock + " available" : PendingRestock > 0 ? "Preorder" : "Out of stock"; } }
-    public bool AvailableToOrder { get { return CurrentStock > 0 || PendingRestock > 0; } }
     
 }

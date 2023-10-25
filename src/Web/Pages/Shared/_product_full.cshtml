@@ -12,9 +12,7 @@
         <div class="prd-catalog-price">
             <span>@Model.Price.ToString("N2")</span>
         </div>
-                <!-- Show the "Add to basket" button only if the item is available to order -->
-        @if (Model.AvailableToOrder)
-
+        @if (Model.CurrentStock > 0)
         {
             <input class="prd-catalog-button" type="submit" value="[ ADD TO BASKET ]" />
         }
@@ -22,9 +20,6 @@
         {
             <div class="prd-catalog-button-disabled">[ OUT OF STOCK ]</div>
         }
-        <div class="prd-catalog-instock">
-            <span>@Model.InStockText</span>
-        </div>
 
         <input type="hidden" asp-for="@Model.Id" name="id" />
         <input type="hidden" asp-for="@Model.Name" name="name" />

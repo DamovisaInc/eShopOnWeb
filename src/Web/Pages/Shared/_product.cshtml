@@ -2,8 +2,7 @@
 
 <form asp-page="/Basket/Index" method="post">
     <a href="/Product?Id=@Model.Id" alt="Product page for @Model.Name"><img class="esh-catalog-thumbnail" src="@Model.PictureUri" /></a>
-    <!-- Show the "Add to basket" button only if the item is available to order -->
-    @if (Model.AvailableToOrder)
+    @if (Model.CurrentStock > 0)
     {
         <input class="esh-catalog-button" type="submit" value="[ ADD TO BASKET ]" />
     }
@@ -11,11 +10,9 @@
     {
         <div class="esh-catalog-button-disabled">[ OUT OF STOCK ]</div>
     }
+    
     <div class="esh-catalog-name">
         <span>@Model.Name</span>
-    </div>
-    <div class="esh-catalog-instock">
-        <span>@Model.InStockText</span>
     </div>
     <div class="esh-catalog-price">
         <span>@Model.Price.ToString("N2")</span>
